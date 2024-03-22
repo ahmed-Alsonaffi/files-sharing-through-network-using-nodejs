@@ -1,11 +1,14 @@
 const fs = require('fs');
-const http = require('http');
 const path = require('path');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
+const app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname,'views','main.html'));
 });
 
-server.listen(4000, () => {
+app.listen(4000, () => {
     console.log(`Server running at http://localhost:4000/`);
   });
