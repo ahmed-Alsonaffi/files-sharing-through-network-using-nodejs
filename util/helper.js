@@ -9,9 +9,20 @@ exports.getFiles = (req, res, next) => {
         fileList = files.map(file =>{
             const filePath = path.join(directoryPath, file);
             const stats = fs.statSync(filePath);
-            const fileSize = Math.ceil(stats.size/(1024*1024));
+            const size = stats.size;
+            // const fileSize = Math.ceil(stats.size/(1024*1024));
+            let fileSize;
+            let sizeUnit;
 
-            return {file: file, size: fileSize}
+            if(size < 1024*1024){
+                fileSize = (size / 1024).toFixed(2);
+                sizeUnit = "KB";
+            }else{
+                fileSize = (size / (1024 * 1024)).toFixed(2);
+                sizeUnit = "MB";
+            }
+
+            return {file: file, size: fileSize+sizeUnit}
         })
         console.log(fileList)
         res.render('main', {
