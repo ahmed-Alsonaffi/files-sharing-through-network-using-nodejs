@@ -10,12 +10,13 @@
 
 <body>
     <ul class="files">
+        <% files.forEach(item =>{ %>
         <li class="files__item">
-            <h1>Order</h1>
             <ul class="">
-                <li class=""><a href="#">item 1</a></li>
+                <li class=""><a href='files/<%=item["file"]%>'><%=item['file']%></a></li>
             </ul>
         </li>
+        <% }) %>
     </ul>
 </body>
 
