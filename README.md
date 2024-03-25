@@ -13,3 +13,8 @@ Make sure you have Node.js installed
   npm install
   node app.js
 ```
+
+go to app.js and change the ip address of your device
+```bash
+  const ip = '192.168.1.6';
+```
